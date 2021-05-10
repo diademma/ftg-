@@ -29,4 +29,4 @@ class InformationMod(loader.Module):
      "<b>🔗Всего ссылок:</b> {}\n"+ 
      "<b>🎞️Всего GIF:</b> {}\n"+ 
      "<b>🗺️Всего отправленных координат:</b> {}\n"+ 
-     "<b>👭Контаков:</b> {}").format(al, ph, vi, mu, vo, vv, do, urls, gifs, geos, cont))
+     "<b>👭Контактов:</b> {}").format(al, ph, vi, mu, vo, vv, do, urls, gifs, geos, cont))
