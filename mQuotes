@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
-# is gay
+# Hackintosh5 is gay
 
-# API author
-# Fixed by: 
- : @, ,
+# API author: @mishase
+# Fixed by: @fast_geek
+# Module authors: @mishase, @rf0x1d, @D4n13l3k00
+# Special thanks to: @h3xcode
 
 # requires: Pillow requests lottie cairosvg 
 
@@ -72,17 +73,17 @@ class mQuotesMod(loader.Module):
 		"admin": "Admin",
 		"channel": "Channel",
 		"media_type_photo": "Photo",
-		"media_type_video": "📹Video",
-		"media_type_videomessage": "📹Video message",
-		"media_type_voice": "🎵Voice message",
-		"media_type_audio": "🎧Music: {} - {}",
-		"media_type_contact": "👤Contact: {}",
-		"media_type_poll": "📊Poll: ",
-		"media_type_quiz": "📊Quiz: ",
-		"media_type_location": "📍Location",
-		"media_type_gif": "🖼GIF",
+		"media_type_video": "рџ“№Video",
+		"media_type_videomessage": "рџ“№Video message",
+		"media_type_voice": "рџЋµVoice message",
+		"media_type_audio": "рџЋ§Music: {} - {}",
+		"media_type_contact": "рџ‘¤Contact: {}",
+		"media_type_poll": "рџ“ЉPoll: ",
+		"media_type_quiz": "рџ“ЉQuiz: ",
+		"media_type_location": "рџ“ЌLocation",
+		"media_type_gif": "рџ–јGIF",
 		"media_type_sticker": "Sticker",
-		"media_type_file": "💾File",
+		"media_type_file": "рџ’ѕFile",
 		"dice_type_dice": "Dice",
 		"dice_type_dart": "Dart",
 		"ball_thrown": "Ball thrown",
@@ -700,10 +701,10 @@ async def get_media_caption(reply_message):
 		if dice:
 			dice_type = ""
 			dice_text = reply_message.media.value
-			if reply_message.media.emoticon == "🎲":
+			if reply_message.media.emoticon == "рџЋІ":
 				dice_type = mQuotesMod.strings["dice_type_dice"]
 				return "{} {}: {}".format(reply_message.media.emoticon, dice_type, dice_text)
-			elif reply_message.media.emoticon == "🎯":
+			elif reply_message.media.emoticon == "рџЋЇ":
 				if dice_text == 1:
 					dice_text = mQuotesMod.strings["dart_missed"]
 				elif dice_text == 5:
@@ -714,7 +715,7 @@ async def get_media_caption(reply_message):
 					return "{} {}".format(reply_message.media.emoticon, mQuotesMod.strings["dart_thrown"])
 				dice_type = mQuotesMod.strings["dice_type_dart"]
 				return "{} {}: {}".format(reply_message.media.emoticon, dice_type, dice_text)
-			elif reply_message.media.emoticon == "🏀":
+			elif reply_message.media.emoticon == "рџЏЂ":
 				return "{} {}".format(reply_message.media.emoticon, mQuotesMod.strings["ball_thrown"])
 			elif reply_message.media.emoticon == b"\xe2\x9a\xbd".decode():
 				return "{} {}".format(reply_message.media.emoticon, mQuotesMod.strings["ball_kicked"])
