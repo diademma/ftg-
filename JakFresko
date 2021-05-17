@@ -42,7 +42,7 @@ class JacquesMod(loader.Module):
   else:
    txt = utils.get_args_raw(message)
   await message.edit("<b>делОю...</b>")
-  pic = requests.get("https://raw.githubusercontent.com/diademma/ftg-/Material/-aTY.jpg")
+  pic = requests.get("https://raw.githubusercontent.com/diademma/ftg-/main/IMG_20210517_164411_374.jpg")
   pic.raw.decode_content = True
   img = Image.open(io.BytesIO(pic.content)).convert("RGB")
  
