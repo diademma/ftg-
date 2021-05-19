@@ -3,10 +3,7 @@ from telethon import events
 import asyncio 
  
 from uniborg.util import admin_cmd 
- 
-def register(cb): 
-cb(SnakeMod())  
-  
+
 class SnakeMod(loader.Module): 
 """Змейка""" 
 strings = {'name': 'Змейка'} 
