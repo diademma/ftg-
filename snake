@@ -16,10 +16,7 @@ class SnakeMod(loader.Module):
     """Змейка""" 
     strings = {'name': 'Змейка'} 
  
-async def scmd(self, message): 
-  """Используй .s""" 
-async def _(event): 
- 
+@borg.on(admin_cmd(pattern=r"s")) 
     if event.fwd_from: 
  
         return 
