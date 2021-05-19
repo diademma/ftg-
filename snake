@@ -8,8 +8,8 @@ def register(cb):
 cb(SnakeMod())  
   
 class SnakeMod(loader.Module): 
- """Змейка""" 
- strings = {'name': 'Змейка'} 
+"""Змейка""" 
+strings = {'name': 'Змейка'} 
  
 @borg.on(admin_cmd(pattern=r"s")) 
  
