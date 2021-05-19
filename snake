@@ -15,9 +15,8 @@ logger = logging.getLogger(__name__)
 class SnakeMod(loader.Module): 
     """Змейка""" 
     strings = {'name': 'Змейка'} 
- 
-@borg.on(admin_cmd(pattern=r"s")) 
-    if event.fwd_from: 
+@loader.owner 
+async def scmd(self, message):
  
         return 
  
