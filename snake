@@ -3,20 +3,22 @@ from telethon import events
 import asyncio 
  
 from uniborg.util import admin_cmd 
+from .. import loader 
+from asyncio import sleep  
 import asyncio
 import logging
-
 from .. import loader, utils
 
-logger = logging.getLogger(__name__)
-
-
-@loader.tds
+def register(cb): 
+ cb(SnowMod())  
+  
 class SnakeMod(loader.Module): 
-    """Змейка""" 
-    strings = {'name': 'Змейка'} 
- 
-async def scmd(event): 
+ """Снег""" 
+ strings = {'name': 'Змейка'} 
+         
+ async def snowcmd(self, message): 
+  """Используй .s"""
+ async def _(event): 
  
         return 
  
