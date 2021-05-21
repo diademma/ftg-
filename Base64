@@ -8,8 +8,8 @@ class base64Mod(loader.Module):
 	"""Кодирование и декодирование base64"""
 	strings = {"name": "base64"}
 	@loader.owner
-	async def b64encodecmd(self, message):
-		""".b64encode <(text or media) or (reply to text or media)>"""
+	async def inkodcmd(self, message):
+		""".inkod <(text or media) or (reply to text or media)>"""
 		reply = await message.get_reply_message()
 		mtext = utils.get_args_raw(message)
 		if message.media:
@@ -36,8 +36,8 @@ class base64Mod(loader.Module):
 			await message.edit(str(output, "utf-8"))
 		
 	@loader.owner
-	async def b64decodecmd(self, message):
-		""".b64decode <text or reply to text>"""
+	async def dekodcmd(self, message):
+		""".dekod <text or reply to text>"""
 		reply = await message.get_reply_message()
 		mtext = utils.get_args_raw(message)
 		if mtext:
