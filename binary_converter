@@ -32,8 +32,8 @@ class BinaryMod(loader.Module):
     
 
     @loader.unrestricted
-    async def stbcmd(self, message):
-        """.stb [реплай или текст]"""
+    async def tobincmd(self, message):
+        """.tobin [реплай или текст]"""
         reply = await message.get_reply_message()
         text = utils.get_args_raw(message)
         
@@ -45,8 +45,8 @@ class BinaryMod(loader.Module):
         await utils.answer(message, ''.join([bin(ord(char))[2:].zfill(8) + " " for char in text]))
         
     @loader.unrestricted
-    async def btscmd(self, message):
-        """.bts [реплай или текст]"""
+    async def totxtcmd(self, message):
+        """.totxt [реплай или текст]"""
         reply = await message.get_reply_message()
         text = utils.get_args_raw(message)
         
