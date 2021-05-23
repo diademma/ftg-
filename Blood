@@ -13,7 +13,7 @@ class bloodMod(loader.Module):
     strings = {'name': '😱 Не для слабонервных'} 
  
     async def bloodcmd(self, message): 
-        """Используйте .blood чтоб увидеть жесть>.""" 
+        """Используйте .blood /a1 чтоб увидеть жесть>.""" 
         try: 
             text = utils.get_args_raw(message) 
             reply = await message.get_reply_message() 
