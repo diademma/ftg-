@@ -12,13 +12,17 @@ class AnecdoteMod(loader.Module):
     strings = {'name': 'Анекдот_tio'} 
  
     async def ancmd(self, message): 
-        """Используйте .an""" 
+        """Используйте .an / .an2 
+        После команды нужен любой аргумент.""" 
         try: 
             text = utils.get_args_raw(message) 
             reply = await message.get_reply_message() 
             chat = "@petrovichjoke_bot" 
+            if not text and not reply: 
+                await message.edit("<b>Используй любой аргумент, будь то буква или точка </b>") 
+                return 
             if text: 
-                await message.edit("<b>Минуточку...</b>") 
+                await message.edit("<b>Секундочку...</b>") 
                 async with message.client.conversation(chat) as conv: 
                     try: 
                         response = conv.wait_event(events.NewMessage(incoming=True, from_users=1326556336)) 
@@ -28,12 +32,12 @@ class AnecdoteMod(loader.Module):
                         await message.reply("<b>Разблокируй бота @petrovichjoke_bot</b>") 
                         return 
                     if not response.text: 
-                        await message.edit("<Бот ответил не текстовым форматом, попробуйте ещё раз.</b>") 
+                        await message.edit("<попробуйте ещё раз.</b>") 
                         return 
                     await message.delete() 
                     await message.client.send_message(message.to_id, response.text) 
             if reply: 
-                await message.edit("<b>Минуточку...</b>") 
+                await message.edit("<b>Секундочку...</b>") 
                 async with message.client.conversation(chat) as conv: 
                     try: 
                         response = conv.wait_event(events.NewMessage(incoming=True, from_users=1326556336)) 
@@ -43,13 +47,53 @@ class AnecdoteMod(loader.Module):
                         await message.reply("<b>Разблокируй бота @petrovichjoke_bot</b>") 
                         return 
                     if not response.text: 
-                        await message.edit("<Бот ответил не текстовым форматом, попробуйте ещё раз.</b>") 
+                        await message.edit("<попробуйте ещё раз.</b>") 
                         return 
                     await message.delete() 
                     await message.client.send_message(message.to_id, response.text) 
         except TimeoutError: 
-            return await message.edit("<b>Истекло время ожидания. Либо бот сдох, либо текст слишком большой, и бот не отвечает.</b>")
-        
+            return await message.edit("<b>Ошибка 404</b>")
+            
     
     
-    
+    async def an2cmd(self, message): 
+        """Используйте .an""" 
+        try: 
+            text = utils.get_args_raw(message) 
+            reply = await message.get_reply_message() 
+            chat = "@FlashTownBot" 
+            if not text and not reply: 
+                await message.edit("<b>Используй любой аргумент, будь то буква или точка </b>") 
+                return 
+            if text: 
+                await message.edit("<b>Секундочку...</b>") 
+                async with message.client.conversation(chat) as conv: 
+                    try: 
+                        response = conv.wait_event(events.NewMessage(incoming=True, from_users=388713470)) 
+                        await message.client.send_message(chat,"анекдот") 
+                        response = await response 
+                    except YouBlockedUserError: 
+                        await message.reply("<b>Разблокируй бота @FlashTownBot</b>") 
+                        return 
+                    if not response.text: 
+                        await message.edit("<попробуйте ещё раз.</b>") 
+                        return 
+                    await message.delete() 
+                    await message.client.send_message(message.to_id, response.text) 
+            if reply: 
+                await message.edit("<b>Секундочку...</b>") 
+                async with message.client.conversation(chat) as conv: 
+                    try: 
+                        response = conv.wait_event(events.NewMessage(incoming=True, from_users=388713470)) 
+                        await message.client.send_message(chat, reply) 
+                        response = await response 
+                    except YouBlockedUserError: 
+                        await message.reply("<b>Разблокируй бота @FlashTownBot</b>") 
+                        return 
+                    if not response.text: 
+                        await message.edit("<попробуйте ещё раз.</b>") 
+                        return 
+                    await message.delete() 
+                    await message.client.send_message(message.to_id, response.text) 
+        except TimeoutError: 
+            return await message.edit("<b>Ошибка 404</b>")
