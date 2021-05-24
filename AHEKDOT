@@ -57,7 +57,7 @@ class AnecdoteMod(loader.Module):
     
     
     async def an2cmd(self, message): 
-        """Используйте .an""" 
+        """Используйте .an2 + любой аргумент""" 
         try: 
             text = utils.get_args_raw(message) 
             reply = await message.get_reply_message() 
