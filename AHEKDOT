@@ -52,41 +52,4 @@ class AnecdoteMod(loader.Module):
         
     
     
-    async def an2cmd(self, message): 
-        """Используйте .an""" 
-        try: 
-            text = utils.get_args_raw(message) 
-            reply = await message.get_reply_message() 
-            chat = "@FlashTownBot" 
-            if text: 
-                await message.edit("<b>Минуточку...</b>") 
-                async with message.client.conversation(chat) as conv: 
-                    try: 
-                        response = conv.wait_event(events.NewMessage(incoming=True, from_users=388713470)) 
-                        await message.client.send_message(chat,"Анекдот") 
-                        response = await response 
-                    except YouBlockedUserError: 
-                        await message.reply("<b>Разблокируй бота @FlashTownBot</b>") 
-                        return 
-                    if not response.text: 
-                        await message.edit("<Бот ответил не текстовым форматом, попробуйте ещё раз.</b>") 
-                        return 
-                    await message.delete() 
-                    await message.client.send_message(message.to_id, response.text) 
-            if reply: 
-                await message.edit("<b>Минуточку...</b>") 
-                async with message.client.conversation(chat) as conv: 
-                    try: 
-                        response = conv.wait_event(events.NewMessage(incoming=True, from_users=388713470)) 
-                        await message.client.send_message(chat, reply) 
-                        response = await response 
-                    except YouBlockedUserError: 
-                        await message.reply("<b>Разблокируй бота @FlashTownBot</b>") 
-                        return 
-                    if not response.text: 
-                        await message.edit("<Бот ответил не текстовым форматом, попробуйте ещё раз.</b>") 
-                        return 
-                    await message.delete() 
-                    await message.client.send_message(message.to_id, response.text) 
-        except TimeoutError: 
-            return await message.edit("<b>Истекло время ожидания. Либо бот сдох, либо текст слишком большой, и бот не отвечает.</b>")
+    
