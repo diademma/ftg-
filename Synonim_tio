@@ -6,7 +6,7 @@ import asyncio
 def register(cb):
     cb(SynonimMod())
 class SynonimMod(loader.Module):
-    """Конвертер Валют"""
+    """Подберу тебе синоним"""
     strings = {'name': 'Синоним_tio'}
     async def syncmd(self, message):
         """.sin + слово"""
