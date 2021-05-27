@@ -1,0 +1,27 @@
+from telethon import events
+from telethon.errors.rpcerrorlist import YouBlockedUserError
+from .. import loader, utils
+import asyncio
+
+def register(cb):
+    cb(SynonimMod())
+class SynonimMod(loader.Module):
+    """Конвертер Валют"""
+    strings = {'name': 'Синоним_tio'}
+    async def syncmd(self, message):
+        """.sin + слово"""
+        state = utils.get_args_raw(message)
+        await message.edit("<b>Секунду</b>")
+        chat = '@synonim_bot'
+        async with message.client.conversation(chat) as conv:
+            try:
+                await message.edit("<b>Вот...</b>")
+                response = conv.wait_event(events.NewMessage(incoming=True, from_users=282576978))
+                bot_send_message = await message.client.send_message(chat, format(state))
+                bot_response = response = await response
+            except YouBlockedUserError:
+                await message.edit('<b>Убери из ЧС:</b> ' + chat)
+                return
+            await bot_send_message.delete()
+            await message.edit(response.text)
+            await bot_response.delete()
