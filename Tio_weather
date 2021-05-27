@@ -19,14 +19,14 @@ class Tio_WeatherMod(loader.Module):
             reply = await message.get_reply_message() 
             chat = "@just_zhenya_bot" 
             if not text and not reply: 
-                await message.edit("<b>Нет аргумента!!! Пиши w. погода и свой город </b>") 
+                await message.edit("<b>Нет аргумента!!! Пиши w. + свой город </b>") 
                 return 
             if text: 
                 await message.edit("<b> узнаю...</b>") 
                 async with message.client.conversation(chat) as conv: 
                     try: 
                         response = conv.wait_event(events.NewMessage(incoming=True, from_users=528677877)) 
-                        await message.client.send_message(chat, text) 
+                        await message.client.send_message(chat, "Погода " + text) 
                         response = await response 
                     except YouBlockedUserError: 
                         await message.reply("<b>Разблокируй этого @just_zhenya_bot бота! </b>") 
