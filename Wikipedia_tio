@@ -8,7 +8,7 @@ def register(cb):
     cb(WikiMod()) 
  
 class WikiMod(loader.Module): 
-    """Модуль для поичка инфы в Википедии """ 
+    """Модуль для поиска инфы в Википедии """ 
     strings = {'name': 'Wikipedia_tio'} 
  
     async def wikicmd(self, message): 
