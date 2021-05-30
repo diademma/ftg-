@@ -1,0 +1,36 @@
+from asyncio import sleep 
+from .. import loader, utils 
+ 
+def register(cb): 
+ cb(БесилкаMod()) 
+  
+class БесилкаMod(loader.Module): 
+ """Взбесит любого тегая и удаляя смс.""" 
+ strings = {'name': 'Бесилка'} 
+ def init(self): 
+  self.name = self.strings['name'] 
+  self._me = None 
+  self._ratelimit = [] 
+   
+ async def взбешуcmd(self, message): 
+  """.взбешу <колличество> <реплай на того, кого выбесить>""" 
+  reply = await message.get_reply_message() 
+  if not reply: 
+   await message.edit("<b>А кого бесить то ?</b>") 
+   return 
+  id = reply.from_id 
+  args = utils.get_args(message) 
+  count = 50 
+  if args: 
+   if args[0].isdigit(): 
+    if int(args[0]) < 0: 
+     count = 50 
+    else: 
+     count = int(args[0]) 
+  txt = '<a href="tg://user?id={}">🌚иди сюда пёс</a>'.format(id) 
+  await message.delete() 
+  for _ in range(count): 
+   await sleep(0.5) 
+   msg = await message.client.send_message(message.to_id, txt) 
+   await sleep(0.5) 
+   await msg.delete()
