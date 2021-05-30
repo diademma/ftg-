@@ -6,8 +6,8 @@ logger = logging.getLogger(__name__)
 
 
 @loader.tds
-class my_ModulesMod(loader.Module):
-    """Все мои модули"""
+class ModulesMod(loader.Module):
+    """Stores global notes (aka snips)"""
     strings = {"name": "Мои Модули",
                "what_note": "<b>What note should be retrieved?</b>",
                "no_note": "<b>Note not found</b>",
@@ -23,7 +23,7 @@ class my_ModulesMod(loader.Module):
                "notes_none": "<b>There are no saved notes</b>"}
 
     async def ncmd(self, message):
-        """Показать модуль"""
+        """Показать модуль """
         args = utils.get_args(message)
         if not args:
             await utils.answer(message, self.strings("what_note", message))
@@ -41,8 +41,8 @@ class my_ModulesMod(loader.Module):
 
         await utils.answer(message, await self._db.fetch_asset(asset_id))
 
-    async def delallModulescmd(self, message):
-        """Удалит все модули"""
+    async def delallmcmd(self, message):
+        """Удалить все сохранённые модули"""
         if not self._db.get(__name__, "notes", {}):
             await utils.answer(message, self.strings("delnotes_none", message))
             return
@@ -50,7 +50,7 @@ class my_ModulesMod(loader.Module):
         await utils.answer(message, self.strings("delnotes_done", message))
 
     async def scmd(self, message):
-        """Сохраняет модуль в заметку"""
+        """Сохранить модуль в заметки"""
         args = utils.get_args(message)
         if not args:
             await utils.answer(message, self.strings("what_name", message))
@@ -71,7 +71,7 @@ class my_ModulesMod(loader.Module):
         await utils.answer(message, self.strings("saved", message))
 
     async def delmcmd(self, message):
-        """Удаляет определенный модуль из заметки"""
+        """Удалить определённый модуль"""
         args = utils.get_args(message)
         if not args:
             await utils.answer(message, self.strings("delnote_args", message))
@@ -88,7 +88,7 @@ class my_ModulesMod(loader.Module):
             self._db.set(__name__, "notes", old)
 
     async def модулиcmd(self, message):
-        """Все сохраненные модули"""
+        """Фулл список модулей """
         if not self._db.get(__name__, "notes", {}):
             await utils.answer(message, self.strings("notes_none", message))
             return
