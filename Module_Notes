@@ -87,7 +87,7 @@ class my_ModulesMod(loader.Module):
         else:
             self._db.set(__name__, "notes", old)
 
-    async def notescmd(self, message):
+    async def allmcmd(self, message):
         """List the saved notes"""
         if not self._db.get(__name__, "notes", {}):
             await utils.answer(message, self.strings("notes_none", message))
