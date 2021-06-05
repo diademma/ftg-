@@ -5,11 +5,11 @@ from telethon import types
 import io
 import requests
 
-biography = requests.get("https://host.d4n13l3k00.ru/79872606066648/-BiU.mp3").content
+biography = requests.get("https://siasky.net/fAKw0t5Wnrly_aVkGyYvAuIXokINZzFEU2u_QhECqqZ2ow").content
 
-biogra = requests.get("https://host.d4n13l3k00.ru/79906965805016/-B-m.mp3").content
+biogra = requests.get("https://siasky.net/PAA5aVEM3UL20i-rNnJUO2XxZKzzWzCWnnw-2P2zWepyAg").content
 
-biogram = requests.get("https://host.d4n13l3k00.ru/79941325543384/ioM.mp3").content
+biogram = requests.get("https://siasky.net/fAPHfVfYNsbDwLUbmpyNuIwA04YPQC1GJdYPG6aDhuo6-Q").content
 
 
 class TrapMod(loader.Module):
