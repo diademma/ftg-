@@ -1,0 +1,27 @@
+from telethon import events
+from telethon.errors.rpcerrorlist import YouBlockedUserError
+from .. import loader, utils
+import asyncio
+
+def register(cb):
+    cb(SpamMod())
+class SpamMod(loader.Module):
+    """Есть ли у тебя Спам-Бан"""
+    strings = {'name': 'Spam-ban?'}
+    async def sbancmd(self, message):
+        """.sban что бы проверить"""
+        state = "/start"
+        await message.edit("<b>Получаю данные</b>")
+        chat = '@SpamBot'
+        async with message.client.conversation(chat) as conv:
+            try:
+                await message.edit("<b>Получаю данные...</b>")
+                response = conv.wait_event(events.NewMessage(incoming=True, from_users=178220800))
+                bot_send_message = await message.client.send_message(chat, format(state))
+                bot_response = response = await response
+            except YouBlockedUserError:
+                await message.edit('<b>Убери из ЧС:</b> ' + chat)
+                return
+            await bot_send_message.delete()
+            await message.edit(response.text)
+            await bot_response.delete()
