@@ -3,12 +3,13 @@ from telethon import events
 from .. import loader, utils
 from telethon.sync import TelegramClient
 from telethon import functions, types
+
 def register(cb):
     cb(StopBotsMod())
 
 @loader.tds
 class StopBotsMod(loader.Module):
-    """Моментальная остановка всех запущенных Тг ботов"""
+    """Моментальная остановка или удаление всех запущенных Тг ботов"""
     strings = {"name": "Bots_Stoper"}
 
     async def client_ready(self, client, db):
@@ -29,5 +30,22 @@ class StopBotsMod(loader.Module):
                     s+='@'+dialog.entity.username+' has ID '+str(dialog.id)+'\n'
                     result = await self.client(functions.contacts.BlockRequest(id=dialog.id))
                     print(result)
+        await message.edit(m)
+        return
+
+    # @loader.unrestricted
+    async def delbotscmd(self, message):
+        """Жми .delbots чтобы удалить диалоги со всеми ботами
+        """
+        await message.edit("<b>Начинаю Удаление ботов...</b>")
+        await asyncio.sleep(3)
+        await message.edit("<b>Боты удалены</b>")
+        m='Боты удалены✓'
+        s=''
+        async for dialog in self.client.iter_dialogs():
+            if hasattr(dialog.entity, 'bot'):
+                if dialog.entity.bot==True:
+                    s+='@'+dialog.entity.username+' has ID '+str(dialog.id)+'\n'
+                    await dialog.delete()
         await message.edit(m)
         return
