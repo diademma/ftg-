@@ -38,6 +38,7 @@ async def cmds(message, type):
 		await message.edit("<b>Команду нужно использовать с текстом!</b>")
 		return
 	await message.edit("<b>i n P r o c e s s . . . </b>")
+        await message.delete()
 	bytes_image = await event.download_media(bytes)
 	demotivator = await demotion(font_bytes, bytes_image, text, type)
 	if is_reply:
