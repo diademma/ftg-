@@ -1,0 +1,55 @@
+import asyncio 
+from telethon import events 
+from telethon.errors.rpcerrorlist import YouBlockedUserError 
+from .. import loader, utils 
+ 
+ 
+def register(cb): 
+ cb(distortMod()) 
+ 
+ 
+class distortMod(loader.Module): 
+ """Линии на фото""" 
+ 
+ strings = {'name': 'Жмых_tio'} 
+ 
+ def init(self): 
+  self.name = self.strings['name'] 
+  self._me = None 
+  self._ratelimit = [] 
+ 
+ async def client_ready(self, client, db): 
+  self._db = db 
+  self._client = client 
+  self.me = await client.get_me() 
+ 
+ async def жмыхcmd(self, message): 
+  """.жмых реплаем на фотку""" 
+   
+  reply = await message.get_reply_message() 
+  if not reply: 
+   await message.edit("Реплаем на фотку") 
+   return 
+  try: 
+   photo = reply.media.photo 
+  except: 
+   await message.edit("Реплаем на фотку") 
+   return 
+     
+  chat = '@Klouns2Bot' 
+  await message.edit(' <code>i n p r o c e s s . . .</code>') 
+  async with message.client.conversation(chat) as conv: 
+   try: 
+    response = conv.wait_event(events.NewMessage(incoming=True, from_users=1891799137)) 
+    await asyncio.sleep(2) 
+    await message.client.send_file(chat, photo) 
+    response = await response 
+    await asyncio.sleep(5) 
+    result = await message.client.get_messages(chat, limit=1) 
+   except YouBlockedUserError: 
+    await message.reply('<code>Убери из ЧС этого бота:</code> @Klouns2Bot') 
+    return 
+   await message.delete() 
+   for x in result: 
+      if x.media: 
+        await message.client.send_file(message.to_id, x.media)
