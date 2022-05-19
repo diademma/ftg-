@@ -14,7 +14,7 @@ def register(cb):
 class DttsMod(loader.Module):
     """Text to speech module"""
 
-    strings = {"name": 'DTTS',
+    strings = {"name": 'SPYHC',
                "no_text": "I can't say nothing",
                "tts_lang_cfg": "Set your language code for the TTS here."}
 
@@ -50,7 +50,7 @@ class DttsMod(loader.Module):
     @loader.unrestricted
     @loader.ratelimit
     async def levitancmd(self, message):
-        """Convert text to speech with levitan voice"""
+        """SPYHC TOP"""
         await self.say(message, "levitan", utils.get_args_raw(message))
 
     @loader.unrestricted
